@@ -1,0 +1,29 @@
+# GitHub/gideontong/ACM-Minecraft-Config
+# License: MIT
+
+[Unit]
+Description=ACM Minecraft GDrive Mount
+AssertPathIsDirectory=/mnt/gdrive
+Wants=network-online.target
+After=network-online.target
+
+[Service]
+Type=notify
+Environment=RCLONE_CONFIG=/opt/backup/rclone.conf
+KillMode=none
+RestartSec=5
+ExecStart=/usr/bin/rclone mount backup: /mnt/gdrive \
+          --allow-other \
+          --cache-tmp-upload-path /tmp/queue \
+          --cache-chunk-path /tmp/rchunks \
+          --buffer-size 256M \
+          --dir-cache-time 24h \
+          --poll-interval 5m \
+          --no-modtime \
+          --stats 0 \
+          --timeout 1h
+ExecStop=/bin/fusermount -u /mnt/gdrive
+Restart=on-failure
+
+[Install]
+WantedBy=multi-user.target
