@@ -1,7 +1,10 @@
 #!/bin/sh
 
 # Modified from https://borgbackup.readthedocs.io/en/stable/quickstart.html
-# Find script on GitHub/gideontong/ACM-Minecraft-Config
+# Find script at GitHub/gideontong
+# Link: https://www.github.com/gideontong/ACM-Minecraft-Config
+
+# License: MIT
 
 export BORG_REPO=/mnt/gdrive/backup
 export BORG_PASSPHRASE='jyPr5QToT&Wca6hfrvtZA5'
